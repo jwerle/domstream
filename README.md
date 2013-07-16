@@ -1,4 +1,3 @@
-
 # domstream
 
 Turn DOM element events into streams
@@ -72,7 +71,7 @@ Emitted when the end of stream event has been emitted.
 
 Emitted if there was an error receiving data.
 
-### source(opts)
+### #source(opts)
 
 * `.start` - The event that when emitted instantiates the 'data' event of the stream
 * `.end` - The event that when emitted instantiates the end of the stream which will emit the 'end' event
