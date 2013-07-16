@@ -1,0 +1,18 @@
+{
+  "name": "domstream",
+  "repo": "jwerle/domstream",
+  "description": "Turn DOM element events into streams",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "component/emitter": "*",
+    "jb55/domready": "*",
+    "component/events": "*",
+    "component/assert": "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "scripts": [
+    "index.js"
+  ]
+}
