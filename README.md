@@ -13,21 +13,21 @@ Turn DOM element events into streams
 
 ```js
 var domstream = require('domstream')
-	,	el = document.getElementById('el')
-	, stream = domstream(el).source({start: 'mousemove', end: 'mouseout'})
+  , el = document.getElementById('el')
+  , stream = domstream(el).source({start: 'mousemove', end: 'mouseout'})
 
 stream.through(
 function write (data) {
-	this.push({x:data.x, y:data.y});
+  this.push({x:data.x, y:data.y});
 },
 function end (data) {
-	console.log('end')
-	this.push([data.x, data.y]);
-	var buf = this.read();
-	for (var i = 0; i < buf.length; ++i) {
-		var d = buf.shift()
-		console.log(d.x, d.y)
-	}
+  console.log('end')
+  this.push([data.x, data.y]);
+  var buf = this.read();
+  for (var i = 0; i < buf.length; ++i) {
+    var d = buf.shift()
+    console.log(d.x, d.y)
+  }
 });
 ```
 
@@ -91,8 +91,8 @@ Pushes a function to the `startStack` array for acting like middle ware to data 
 
 ```js
 stream.use(function (data, next) {
-	data.property = "value";
-	next();
+  data.property = "value";
+  next();
 });
 ```
 
@@ -103,10 +103,10 @@ Defines a write and end handle for the stream handle
 ```js
 stream.through(
 function write (data) {
-	this.push(data);
+  this.push(data);
 },
 function end () {
-	console.log(this.read());
+  console.log(this.read());
 });
 ```
 
