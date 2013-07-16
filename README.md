@@ -64,11 +64,11 @@ When there is data ready to be consumed, this event will fire.
 
 Emitted when data is written to stream.
 
-###### 'end'
+##### 'end'
 
 Emitted when the end of stream event has been emitted.
 
-###### 'end'
+##### 'error'
 
 Emitted if there was an error receiving data.
 
