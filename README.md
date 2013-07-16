@@ -17,11 +17,26 @@ var domstream = require('domstream')
   , stream = domstream(el).source({start: 'mousemove', end: 'mouseout'})
 
 stream.through(
-function write (data) {
-  this.push({x:data.x, y:data.y});
-},
-function end () {
-  var buf = this.read();
+  function write (data) {
+    this.push({x:data.x, y:data.y});
+  },
+  function end (buf) {
+    for (var i = 0; i < buf.length; ++i) {
+      var d = buf.shift()
+      console.log(d.x, d.y)
+    }
+  });
+```
+
+The above is just short hand for:
+
+```js
+stream.on('data', function (data) {
+  stream.push({x: data.x, y: data.y})
+});
+
+stream.on('end', function () {
+  var buf = stream.read();
   for (var i = 0; i < buf.length; ++i) {
     var d = buf.shift()
     console.log(d.x, d.y)
@@ -37,6 +52,33 @@ Accepts a DOM Node and returns a readable/writable `DOMStream` influenced from n
 
 ```js
 var stream = domstream(document.getElementById('node'));
+```
+
+#### Events
+
+##### 'readable'
+
+When there is data ready to be consumed, this event will fire.
+
+##### 'data'
+
+Emitted when data is written to stream.
+
+###### 'end'
+
+Emitted when the end of stream event has been emitted.
+
+###### 'end'
+
+Emitted if there was an error receiving data.
+
+### source(opts)
+
+* `.start` - The event that when emitted instantiates the 'data' event of the stream
+* `.end` - The event that when emitted instantiates the end of the stream which will emit the 'end' event
+
+```js
+stream.source({start: 'dragstart', end: 'dragend'});
 ```
 
 ### #write(data)

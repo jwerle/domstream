@@ -243,8 +243,11 @@ function executeStack (stack, data) {
  */
 
 DOMStream.prototype.through = function (write, end) {
+	var self = this
 	this.on('data', write);
-	this.on('end', end);
+	this.on('end', function () {
+		end(self.read());
+	});
 	return this;
 };
 
